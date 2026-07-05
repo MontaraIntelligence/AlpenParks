@@ -1839,7 +1839,7 @@ nudge:
 
 
 openButton:
-"AlpenParks Digital Concierge",
+"AI Concierge",
 
 
 headerTitle:
@@ -1956,7 +1956,7 @@ nudge:
 
 
 openButton:
-"AlpenParks Digital Concierge",
+"AI Concierge",
 
 
 headerTitle:
