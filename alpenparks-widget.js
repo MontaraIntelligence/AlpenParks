@@ -3,12 +3,22 @@
 
   const style = document.createElement("style");
   style.innerHTML = `
-    #montara-concierge {
+#montara-concierge {
+
   position: fixed !important;
-  right: 24px !important;
-  bottom: 24px !important;
+
+  right: 0px !important;
+
+  top: 58% !important;
+
+  bottom: auto !important;
+
+  transform: translateY(-50%);
+
   z-index: 999999 !important;
+
   font-family: Inter, Arial, sans-serif;
+
 }
 
 
@@ -52,50 +62,54 @@
 
 
 #montara-open-button {
-  display: flex;
 
-  align-items: center;
+  width: 150px;
 
-  gap: 12px;
-
-
-  border: none;
+  height: 52px;
 
 
-  background: linear-gradient(
-    135deg,
-    #2F3A34,
-    #4F6B5A
-  );
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:8px;
+
+
+  border:none;
+
+
+  background:#b49a6a;
 
 
   color:white;
 
 
-  padding:17px 24px;
+  border-radius:
 
-  border-radius:999px;
+  8px 0 0 8px;
 
 
   cursor:pointer;
 
 
-  font-size:16px;
+  font-size:14px;
+
+  font-weight:600;
 
 
   box-shadow:
-  0 20px 55px
-  rgba(47,58,52,.35);
+  0 8px 25px
+  rgba(0,0,0,.18);
 
 
-  animation:
-  montaraFloat
-  4s ease-in-out infinite;
+  animation:none;
 
 
-  transition:.22s ease;
+  transition:.25s ease;
+
 }
-
 
 
 @keyframes montaraFloat {
@@ -130,23 +144,13 @@ display:none;
 
 .montara-open-icon {
 
-width:28px;
+width:auto;
 
-height:28px;
+height:auto;
 
+border:none;
 
-border-radius:50%;
-
-
-border:
-2px solid #B18A5A;
-
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
+font-size:18px;
 
 }
 
