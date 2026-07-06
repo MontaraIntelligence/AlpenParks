@@ -1,9 +1,14 @@
-(function () {
-  if (document.getElementById("montara-concierge")) return;
+(function(){
 
-  const style = document.createElement("style");
-  style.innerHTML = `
-    #montara-concierge {
+if(document.getElementById("montara-concierge")) return;
+
+
+/* CSS */
+const style=document.createElement("style");
+
+style.innerHTML=`
+
+#montara-concierge {
   position: fixed !important;
   right: 24px !important;
   bottom: 24px !important;
@@ -1135,12 +1140,19 @@ grid-template-columns:1fr;
 
 
 }
-  `;
-  document.head.appendChild(style);
 
-  const wrapper = document.createElement("div");
-  wrapper.innerHTML = `
-    <div id="montara-concierge">
+`;
+
+document.head.appendChild(style);
+
+
+
+/* HTML */
+const wrapper=document.createElement("div");
+
+wrapper.innerHTML=`
+
+<div id="montara-concierge">
 
 
   <!-- SMART POPUP -->
@@ -1764,11 +1776,16 @@ grid-template-columns:1fr;
 
 
 </div>
-  `;
-  document.body.appendChild(wrapper);
 
-  const MONTARA_WEBHOOK_URL =
-"https://montaraintelligence.app.n8n.cloud/webhook/981ade4e-0f1e-44ae-99cb-b8b7b12c52e4/chat";
+`;
+
+document.body.appendChild(wrapper);
+
+
+
+/* JS */
+const MONTARA_WEBHOOK_URL =
+"https://alpenparkstaxacher.app.n8n.cloud/webhook/41d04b8c-752d-46ba-a73c-1e49feab2de4";
 
 
 const MONTARA_AVATAR_URL =
@@ -2380,26 +2397,63 @@ language:currentLang
 
 
 
-
-const data =
-await response.json();
-
-
+const data = await response.json();
 
 removeTyping();
 
+let reply =
+  data.output ||
+  data.text ||
+  data.reply ||
+  data.message ||
+  translations[currentLang].fallback;
+
+
+// если n8n случайно прислал объект
+if (typeof reply === "object") {
+
+  reply =
+    reply.reply ||
+    reply.output ||
+    reply.text ||
+    reply.message ||
+    JSON.stringify(reply);
+
+}
+
+
+// если n8n прислал JSON как текст
+if (typeof reply === "string") {
+
+  const trimmed = reply.trim();
+
+  if (
+    trimmed.startsWith("{") &&
+    trimmed.endsWith("}")
+  ) {
+
+    try {
+
+      const parsed = JSON.parse(trimmed);
+
+      reply =
+        parsed.reply ||
+        parsed.output ||
+        parsed.text ||
+        parsed.message ||
+        reply;
+
+    } catch(error) {}
+
+  }
+
+}
 
 
 addMessage(
-"bot",
-
-data.output ||
-data.text ||
-data.reply ||
-translations[currentLang].fallback
-
+  "bot",
+  reply
 );
-
 
 
 }
@@ -2575,4 +2629,6 @@ nudge.classList.add("show");
 
 
 applyLanguage("de");
+
+
 })();
