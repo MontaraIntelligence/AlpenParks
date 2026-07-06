@@ -3,22 +3,12 @@
 
   const style = document.createElement("style");
   style.innerHTML = `
-#montara-concierge {
-
+    #montara-concierge {
   position: fixed !important;
-
-  right: 0px !important;
-
-  top: 58% !important;
-
-  bottom: auto !important;
-
-  transform: translateY(-50%);
-
+  right: 24px !important;
+  bottom: 24px !important;
   z-index: 999999 !important;
-
   font-family: Inter, Arial, sans-serif;
-
 }
 
 
@@ -62,54 +52,50 @@
 
 
 #montara-open-button {
+  display: flex;
 
-  width: 150px;
+  align-items: center;
 
-  height: 52px;
-
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:8px;
+  gap: 12px;
 
 
-  border:none;
+  border: none;
 
 
-  background:#b49a6a;
+  background: linear-gradient(
+    135deg,
+    #2F3A34,
+    #4F6B5A
+  );
 
 
   color:white;
 
 
-  border-radius:
+  padding:17px 24px;
 
-  8px 0 0 8px;
+  border-radius:999px;
 
 
   cursor:pointer;
 
 
-  font-size:14px;
-
-  font-weight:600;
+  font-size:16px;
 
 
   box-shadow:
-  0 8px 25px
-  rgba(0,0,0,.18);
+  0 20px 55px
+  rgba(47,58,52,.35);
 
 
-  animation:none;
+  animation:
+  montaraFloat
+  4s ease-in-out infinite;
 
 
-  transition:.25s ease;
-
+  transition:.22s ease;
 }
+
 
 
 @keyframes montaraFloat {
@@ -144,13 +130,23 @@ display:none;
 
 .montara-open-icon {
 
-width:auto;
+width:28px;
 
-height:auto;
+height:28px;
 
-border:none;
 
-font-size:18px;
+border-radius:50%;
+
+
+border:
+2px solid #B18A5A;
+
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
 
 }
 
@@ -1839,7 +1835,7 @@ nudge:
 
 
 openButton:
-"AI Concierge",
+"AlpenParks Digital Concierge",
 
 
 headerTitle:
@@ -1956,7 +1952,7 @@ nudge:
 
 
 openButton:
-"AI Concierge",
+"AlpenParks Digital Concierge",
 
 
 headerTitle:
