@@ -401,9 +401,7 @@ rgba(62,209,122,0);
 
 }
 
-}
-
-/* LANGUAGE */
+}/* LANGUAGE */
 
 .montara-lang-switch {
 
@@ -1752,7 +1750,7 @@ grid-template-columns:1fr;
 
     <div class="montara-powered">
 
-      AlpenParks Taxacher Intelligence 
+      AlpenParks Intelligence
 
     </div>
 
