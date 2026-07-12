@@ -1785,7 +1785,7 @@ document.body.appendChild(wrapper);
 
 /* JS */
 const MONTARA_WEBHOOK_URL =
-"https://alpenparkstaxacher.app.n8n.cloud/webhook/41d04b8c-752d-46ba-a73c-1e49feab2de4";
+"https://alpenparkstaxacher.app.n8n.cloud/webhook/hotel-chat"";
 
 
 const MONTARA_AVATAR_URL =
