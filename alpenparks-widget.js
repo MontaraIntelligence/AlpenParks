@@ -2096,6 +2096,10 @@ cardReceptionSub:
 function applyLanguage(lang){
 
 currentLang = lang;
+  localStorage.setItem(
+  "montara_widget_language",
+  currentLang
+);
 
 
 document
@@ -2654,7 +2658,7 @@ nudge.classList.add("show");
 
 
 
-applyLanguage("de");
-
+applyLanguage(currentLang);
+  
 
 })();
