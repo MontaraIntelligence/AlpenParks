@@ -2530,13 +2530,22 @@ sendButton.onclick = () => {
 
 
 input.addEventListener(
-"keydown",
-e=>{
+  "keydown",
+  event => {
 
-if(e.key==="Enter")
-sendMessage();
+    if (
+      event.key === "Enter" &&
+      !event.shiftKey
+    ) {
+      event.preventDefault();
 
-}
+      sendMessage(
+        "",
+        "typed"
+      );
+    }
+
+  }
 );
 
 
@@ -2544,24 +2553,27 @@ sendMessage();
 
 
 document
-.querySelectorAll(".montara-card")
-.forEach(card=>{
+  .querySelectorAll(".montara-card")
+  .forEach(card => {
 
+    card.onclick = () => {
+      const key =
+        card.dataset.key;
 
-card.onclick=()=>{
+      const quickMessage =
+        translations[currentLang]
+          ?.cardMessages
+          ?.[key] ||
+        card.dataset.message ||
+        "";
 
+      sendMessage(
+        quickMessage,
+        "quick_action"
+      );
+    };
 
-input.value =
-card.dataset.message;
-
-
-sendMessage();
-
-
-};
-
-});
-
+  });
 
 
 
