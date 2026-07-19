@@ -1832,7 +1832,12 @@ document.getElementById("montara-dynamic-greeting");
 
 
 
-let currentLang = "de";
+let currentLang =
+  localStorage.getItem(
+    "montara_widget_language"
+  ) === "en"
+    ? "en"
+    : "de";
 
 
 let sessionId =
