@@ -2402,9 +2402,6 @@ async function sendMessage(
 
           chatInput: text,
 
-          // Язык, выбранный в интерфейсе виджета.
-          language: currentLang,
-
           // typed или quick_action.
           messageSource,
 
