@@ -2344,149 +2344,144 @@ if(t) t.remove();
 
 
 
-async function sendMessage(){
+async function sendMessage(
+  textOverride = "",
+  messageSource = "typed"
+) {
+  const typedText =
+    input.value.trim();
 
+  const text =
+    String(textOverride || typedText).trim();
 
-const text =
-input.value.trim();
-
-
-if(!text) return;
-
-
-
-addMessage(
-"user",
-text
-);
-
-
-
-document.querySelector(
-".montara-quick-buttons"
-).style.display="none";
-
-
-
-input.value="";
-
-
-addTyping();
-
-
-
-
-try{
-
-
-const response =
-await fetch(
-MONTARA_WEBHOOK_URL,
-{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-
-body:JSON.stringify({
-
-action:"sendMessage",
-
-sessionId,
-
-chatInput:text,
-
-language:currentLang
-
-})
-
-});
-
-
-
-const data = await response.json();
-
-removeTyping();
-
-let reply =
-  data.output ||
-  data.text ||
-  data.reply ||
-  data.message ||
-  translations[currentLang].fallback;
-
-
-// если n8n случайно прислал объект
-if (typeof reply === "object") {
-
-  reply =
-    reply.reply ||
-    reply.output ||
-    reply.text ||
-    reply.message ||
-    JSON.stringify(reply);
-
-}
-
-
-// если n8n прислал JSON как текст
-if (typeof reply === "string") {
-
-  const trimmed = reply.trim();
-
-  if (
-    trimmed.startsWith("{") &&
-    trimmed.endsWith("}")
-  ) {
-
-    try {
-
-      const parsed = JSON.parse(trimmed);
-
-      reply =
-        parsed.reply ||
-        parsed.output ||
-        parsed.text ||
-        parsed.message ||
-        reply;
-
-    } catch(error) {}
-
+  if (!text) {
+    return;
   }
 
+  addMessage(
+    "user",
+    text
+  );
+
+  const quickButtons =
+    document.querySelector(
+      ".montara-quick-buttons"
+    );
+
+  if (quickButtons) {
+    quickButtons.style.display = "none";
+  }
+
+  input.value = "";
+
+  addTyping();
+
+  try {
+    const response = await fetch(
+      MONTARA_WEBHOOK_URL,
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          action: "sendMessage",
+
+          sessionId,
+
+          chatInput: text,
+
+          // Язык, выбранный в интерфейсе виджета.
+          language: currentLang,
+
+          // typed или quick_action.
+          messageSource,
+
+          hotelKey:
+            "alpenparks_taxacher"
+        })
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Webhook returned HTTP ${response.status}`
+      );
+    }
+
+    const data =
+      await response.json();
+
+    removeTyping();
+
+    let reply =
+      data.output ||
+      data.text ||
+      data.reply ||
+      data.message ||
+      translations[currentLang].fallback;
+
+    if (
+      reply &&
+      typeof reply === "object"
+    ) {
+      reply =
+        reply.reply ||
+        reply.output ||
+        reply.text ||
+        reply.message ||
+        JSON.stringify(reply);
+    }
+
+    if (typeof reply === "string") {
+      const trimmed =
+        reply.trim();
+
+      if (
+        trimmed.startsWith("{") &&
+        trimmed.endsWith("}")
+      ) {
+        try {
+          const parsed =
+            JSON.parse(trimmed);
+
+          reply =
+            parsed.reply ||
+            parsed.output ||
+            parsed.text ||
+            parsed.message ||
+            reply;
+
+        } catch (error) {
+          console.warn(
+            "Could not parse concierge response:",
+            error
+          );
+        }
+      }
+    }
+
+    addMessage(
+      "bot",
+      String(reply || "")
+    );
+
+  } catch (error) {
+    console.error(
+      "Montara widget error:",
+      error
+    );
+
+    removeTyping();
+
+    addMessage(
+      "bot",
+      translations[currentLang].error
+    );
+  }
 }
-
-
-addMessage(
-  "bot",
-  reply
-);
-
-
-}
-
-
-
-catch(e){
-
-
-removeTyping();
-
-
-addMessage(
-"bot",
-translations[currentLang].error
-);
-
-
-}
-
-
-}
-
 
 
 
@@ -2525,8 +2520,12 @@ openButton.classList.remove("is-hidden");
 
 
 
-sendButton.onclick =
-sendMessage;
+sendButton.onclick = () => {
+  sendMessage(
+    "",
+    "typed"
+  );
+};
 
 
 
