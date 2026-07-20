@@ -866,6 +866,56 @@ color:#222;
 }
 
 
+/* ROOM IMAGE GALLERY */
+
+.montara-image-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.montara-image-link {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #eee;
+  text-decoration: none;
+}
+
+.montara-room-image {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.montara-room-image:hover {
+  transform: scale(1.02);
+  opacity: 0.96;
+}
+
+.montara-image-placeholder {
+  display: none;
+  padding: 12px;
+  font-size: 12px;
+  color: #7A6F66;
+  background: #EFE6DB;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 991.98px) {
+  .montara-room-image {
+    height: 170px;
+  }
+}
 
 .montara-time {
 
@@ -2210,88 +2260,195 @@ hour < 18
 
 
 
-function addMessage(type,text){
+function addMessage(
+  type,
+  text,
+  images = []
+) {
+  const msg =
+    document.createElement("div");
 
+  msg.className =
+    `montara-message ${type}`;
 
-const msg =
-document.createElement("div");
+  if (type === "bot") {
+    const avatar =
+      document.createElement("div");
 
+    avatar.className =
+      "montara-bot-avatar";
 
-msg.className =
-`montara-message ${type}`;
+    avatar.innerHTML =
+      `<img src="${MONTARA_AVATAR_URL}" alt="AlpenParks Concierge">`;
 
+    msg.appendChild(avatar);
+  }
 
+  const bubble =
+    document.createElement("div");
 
+  bubble.className =
+    "montara-bubble";
 
-if(type==="bot"){
+  /*
+   * Текст ответа.
+   *
+   * Не используем innerHTML с ответом AI,
+   * чтобы текст от модели не мог вставить
+   * произвольный HTML.
+   */
+  const textElement =
+    document.createElement("div");
 
+  textElement.className =
+    "montara-message-text";
 
-const avatar =
-document.createElement("div");
+  textElement.textContent =
+    String(text || "");
 
+  bubble.appendChild(textElement);
 
-avatar.className =
-"montara-bot-avatar";
+  /*
+   * Фотографии номера или апартамента.
+   */
+  if (
+    type === "bot" &&
+    Array.isArray(images) &&
+    images.length > 0
+  ) {
+    const gallery =
+      document.createElement("div");
 
+    gallery.className =
+      "montara-image-gallery";
 
-avatar.innerHTML =
-`<img src="${MONTARA_AVATAR_URL}">`;
+    images.forEach((image, index) => {
+      /*
+       * Workflow возвращает объекты:
+       *
+       * {
+       *   url: "...",
+       *   alt: "..."
+       * }
+       *
+       * На всякий случай также поддерживаем
+       * простой массив URL-строк.
+       */
+      const imageUrl =
+        typeof image === "string"
+          ? image
+          : image?.url;
 
+      const imageAlt =
+        typeof image === "object"
+          ? image?.alt
+          : "";
 
-msg.appendChild(avatar);
+      if (
+        !imageUrl ||
+        typeof imageUrl !== "string"
+      ) {
+        return;
+      }
 
+      const link =
+        document.createElement("a");
 
-}
+      link.className =
+        "montara-image-link";
 
+      link.href =
+        imageUrl;
 
+      link.target =
+        "_blank";
 
+      link.rel =
+        "noopener noreferrer";
 
-const bubble =
-document.createElement("div");
+      link.setAttribute(
+        "aria-label",
+        imageAlt ||
+        `Hotel accommodation image ${index + 1}`
+      );
 
+      const img =
+        document.createElement("img");
 
-bubble.className =
-"montara-bubble";
+      img.className =
+        "montara-room-image";
 
+      img.src =
+        imageUrl;
 
-bubble.textContent =
-text;
+      img.alt =
+        imageAlt ||
+        "Hotel room or apartment";
 
+      img.loading =
+        index === 0
+          ? "eager"
+          : "lazy";
 
+      img.decoding =
+        "async";
 
-const time =
-document.createElement("span");
+      /*
+       * Если одна ссылка не загрузилась,
+       * скрываем только сломанную фотографию,
+       * а не всё сообщение.
+       */
+      img.addEventListener(
+        "error",
+        () => {
+          console.warn(
+            "Could not load room image:",
+            imageUrl
+          );
 
+          link.remove();
 
-time.className =
-"montara-time";
+          if (
+            gallery.children.length === 0
+          ) {
+            gallery.remove();
+          }
+        }
+      );
 
+      link.appendChild(img);
+      gallery.appendChild(link);
+    });
 
-time.textContent =
-new Date()
-.toLocaleTimeString(
-[],
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-);
+    if (
+      gallery.children.length > 0
+    ) {
+      bubble.appendChild(gallery);
+    }
+  }
 
+  const time =
+    document.createElement("span");
 
+  time.className =
+    "montara-time";
 
-bubble.appendChild(time);
+  time.textContent =
+    new Date().toLocaleTimeString(
+      [],
+      {
+        hour: "2-digit",
+        minute: "2-digit"
+      }
+    );
 
+  bubble.appendChild(time);
 
-msg.appendChild(bubble);
+  msg.appendChild(bubble);
+  body.appendChild(msg);
 
-
-body.appendChild(msg);
-
-
-body.scrollTop =
-body.scrollHeight;
-
-
+  body.scrollTop =
+    body.scrollHeight;
 }
 
 
@@ -2422,57 +2579,99 @@ async function sendMessage(
 
     removeTyping();
 
-    let reply =
-      data.output ||
-      data.text ||
-      data.reply ||
-      data.message ||
-      translations[currentLang].fallback;
+let responseData =
+  data && typeof data === "object"
+    ? data
+    : {};
 
-    if (
-      reply &&
-      typeof reply === "object"
-    ) {
+let reply =
+  responseData.output ||
+  responseData.text ||
+  responseData.reply ||
+  responseData.message ||
+  translations[currentLang].fallback;
+
+let images =
+  Array.isArray(responseData.images)
+    ? responseData.images
+    : [];
+
+/*
+ * Иногда backend может вернуть весь JSON
+ * внутри строкового поля output.
+ */
+if (typeof reply === "string") {
+  const trimmed =
+    reply.trim();
+
+  if (
+    trimmed.startsWith("{") &&
+    trimmed.endsWith("}")
+  ) {
+    try {
+      const parsed =
+        JSON.parse(trimmed);
+
       reply =
-        reply.reply ||
-        reply.output ||
-        reply.text ||
-        reply.message ||
-        JSON.stringify(reply);
-    }
-
-    if (typeof reply === "string") {
-      const trimmed =
-        reply.trim();
+        parsed.reply ||
+        parsed.output ||
+        parsed.text ||
+        parsed.message ||
+        reply;
 
       if (
-        trimmed.startsWith("{") &&
-        trimmed.endsWith("}")
+        images.length === 0 &&
+        Array.isArray(parsed.images)
       ) {
-        try {
-          const parsed =
-            JSON.parse(trimmed);
-
-          reply =
-            parsed.reply ||
-            parsed.output ||
-            parsed.text ||
-            parsed.message ||
-            reply;
-
-        } catch (error) {
-          console.warn(
-            "Could not parse concierge response:",
-            error
-          );
-        }
+        images =
+          parsed.images;
       }
+    } catch (error) {
+      console.warn(
+        "Could not parse concierge response:",
+        error
+      );
     }
+  }
+}
 
-    addMessage(
-      "bot",
-      String(reply || "")
-    );
+/*
+ * На случай если output сам оказался объектом.
+ */
+if (
+  reply &&
+  typeof reply === "object"
+) {
+  const nested =
+    reply;
+
+  reply =
+    nested.reply ||
+    nested.output ||
+    nested.text ||
+    nested.message ||
+    translations[currentLang].fallback;
+
+  if (
+    images.length === 0 &&
+    Array.isArray(nested.images)
+  ) {
+    images =
+      nested.images;
+  }
+}
+
+addMessage(
+  "bot",
+  String(reply || ""),
+  images
+);
+
+addMessage(
+  "bot",
+  String(reply || ""),
+  images
+);
 
   } catch (error) {
     console.error(
