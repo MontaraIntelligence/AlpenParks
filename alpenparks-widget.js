@@ -867,11 +867,10 @@ color:#222;
 
 
 /* ROOM IMAGE GALLERY */
-
 .montara-image-gallery {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 9px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
   margin-top: 12px;
   width: 100%;
 }
@@ -879,22 +878,39 @@ color:#222;
 .montara-image-link {
   display: block;
   width: 100%;
+  min-width: 0;
   overflow: hidden;
   border-radius: 12px;
   background: #eee;
   text-decoration: none;
 }
 
+/*
+ * Первая фотография занимает всю ширину.
+ */
+.montara-image-link:first-child {
+  grid-column: 1 / -1;
+}
+
 .montara-room-image {
   display: block;
   width: 100%;
-  height: 190px;
+  height: 125px;
   object-fit: cover;
   border-radius: 12px;
   cursor: pointer;
+
   transition:
     transform 0.2s ease,
     opacity 0.2s ease;
+}
+
+/*
+ * Первая фотография крупнее остальных.
+ */
+.montara-image-link:first-child
+.montara-room-image {
+  height: 210px;
 }
 
 .montara-room-image:hover {
@@ -902,18 +918,14 @@ color:#222;
   opacity: 0.96;
 }
 
-.montara-image-placeholder {
-  display: none;
-  padding: 12px;
-  font-size: 12px;
-  color: #7A6F66;
-  background: #EFE6DB;
-  border-radius: 12px;
-}
-
 @media screen and (max-width: 991.98px) {
   .montara-room-image {
-    height: 170px;
+    height: 105px;
+  }
+
+  .montara-image-link:first-child
+  .montara-room-image {
+    height: 180px;
   }
 }
 
