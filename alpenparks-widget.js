@@ -843,6 +843,17 @@ white-space:pre-wrap;
 
 }
 
+.montara-bubble-with-images {
+  max-width: 94%;
+  width: 94%;
+}
+
+.montara-message.bot:has(.montara-image-gallery)
+.montara-bubble {
+  max-width: 94%;
+  width: 94%;
+}
+
 
 
 .user .montara-bubble {
@@ -2315,7 +2326,10 @@ function addMessage(
     type === "bot" &&
     Array.isArray(images) &&
     images.length > 0
-  ) {
+  ) { 
+    bubble.classList.add(
+  "montara-bubble-with-images"
+);
     const gallery =
       document.createElement("div");
 
