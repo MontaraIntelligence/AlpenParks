@@ -2689,11 +2689,13 @@ if (
   }
 }
 console.log("addMessage images:", images);
+
 addMessage(
   "bot",
   String(reply || ""),
   images
 );
+
 
   } catch (error) {
     console.error(
