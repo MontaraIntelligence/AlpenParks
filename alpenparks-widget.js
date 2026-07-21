@@ -2621,6 +2621,8 @@ let images =
   Array.isArray(responseData.images)
     ? responseData.images
     : [];
+    console.log("Webhook response:", responseData);
+console.log("Images array:", images);
 
 /*
  * Иногда backend может вернуть весь JSON
@@ -2686,6 +2688,7 @@ if (
       nested.images;
   }
 }
+console.log("addMessage images:", images);
 
 addMessage(
   "bot",
