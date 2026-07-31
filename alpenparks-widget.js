@@ -249,7 +249,11 @@ scale(1);
 
 .montara-chat-top {
 
-background:#2F6648;
+background:linear-gradient(
+135deg,
+#2F3A34,
+#4F6B5A
+);
 
 
 padding:18px 20px;
@@ -659,7 +663,11 @@ gap:8px;
 
 .montara-card {
 
-background:#2F6648;
+background:linear-gradient(
+135deg,
+#2F3A34,
+#4F6B5A
+);
 
 
 border-radius:12px;
@@ -681,7 +689,7 @@ cursor:pointer;
 
 box-shadow:none;
 
-border:1px solid #2F6648;
+border:1px solid #2F3A34;
 
 min-height:58px;
 
@@ -700,7 +708,11 @@ transition:.18s ease;
 
 .montara-card:hover {
 
-background:#285B3F;
+background:linear-gradient(
+135deg,
+#27312C,
+#425A4C
+);
 
 transform:
 translateY(-2px);
@@ -848,7 +860,11 @@ white-space:pre-wrap;
 
 .user .montara-bubble {
 
-background:#2F6648;
+background:linear-gradient(
+135deg,
+#2F3A34,
+#4F6B5A
+);
 
 
 color:white;
@@ -1125,7 +1141,11 @@ border:none;
 border-radius:50%;
 
 
-background:#2F6648;
+background:linear-gradient(
+135deg,
+#2F3A34,
+#4F6B5A
+);
 
 
 color:white;
@@ -1445,14 +1465,14 @@ wrapper.innerHTML=`
 
             <strong id="montara-dynamic-greeting">
 
-              🏔️ Guten Tag 👋
+              Willkommen im AlpenParks Taxacher 👋
 
             </strong>
 
 
 
             <p data-i18n="welcomeText">
-              Wie kann ich Ihnen heute helfen?
+              Ich bin Ihr digitaler Concierge. Schreiben Sie mir einfach in Ihrer bevorzugten Sprache.<br><br>Ich helfe Ihnen gerne bei Fragen zu Zimmern, Verfügbarkeit, Frühstück, Wellness, Parken und Ihrem Aufenthalt.
 
 
             </p>
@@ -2260,41 +2280,10 @@ setGreeting();
 
 function setGreeting(){
 
-
-const hour =
-new Date().getHours();
-
-
-
-if(currentLang==="de"){
-
-
 greeting.textContent =
-hour < 12
-? "☀️ Guten Morgen 👋"
-:
-hour < 18
-? "🏔️ Guten Tag 👋"
-:
-"🌙 Guten Abend 👋";
-
-
-}
-
-
-else{
-
-
-greeting.textContent =
-hour < 12
-? "☀️ Good morning 👋"
-:
-hour < 18
-? "🏔️ Good afternoon 👋"
-:
-"🌙 Good evening 👋";
-
-}
+currentLang === "de"
+? "Willkommen im AlpenParks Taxacher 👋"
+: "Welcome to AlpenParks Taxacher 👋";
 
 }
 
