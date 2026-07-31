@@ -1323,6 +1323,14 @@ padding:0 0 9px;
     padding:14px;
   }
 
+.montara-welcome-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 13px 0;
+  background: rgba(255, 255, 255, 0.22);
+}
+
   .montara-logo {
     width:48px;
     height:48px;
@@ -2041,7 +2049,7 @@ status:
 
 
 welcomeText:
-"Ich bin Ihr digitaler Concierge. Schreiben Sie mir einfach in Ihrer bevorzugten Sprache.<br><br>Ich helfe Ihnen gerne bei Fragen zu Zimmern, Verfügbarkeit, Frühstück, Wellness, Parken und Ihrem Aufenthalt.",
+"Ich bin Ihr digitaler Concierge. Schreiben Sie mir einfach in Ihrer bevorzugten Sprache.<span class=\"montara-welcome-divider\"></span>Ich helfe Ihnen gerne bei Fragen zu Zimmern, Verfügbarkeit, Frühstück, Wellness, Parken und Ihrem Aufenthalt.",
 
 
 trust:
@@ -2154,11 +2162,11 @@ headerTitle:
 
 
 status:
-"Online · AI concierge",
+"Online · AI Concierge",
 
 
 welcomeText:
-"I’m your digital concierge. Feel free to message me in your preferred language.<br><br>I can help with rooms, availability, breakfast, wellness, parking and anything related to your stay.",
+"I’m your digital concierge. Feel free to message me in your preferred language.<span class=\"montara-welcome-divider\"></span>I can help with rooms, availability, breakfast, wellness, parking and anything related to your stay.",
 
 
 trust:
