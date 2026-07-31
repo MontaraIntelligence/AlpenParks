@@ -126,22 +126,6 @@ transform:translateY(-2px);
 transform:scale(.96);
 }
 
-#montara-open-button:focus-visible,
-#montara-close-button:focus-visible,
-#montara-reset-button:focus-visible,
-#montara-send-button:focus-visible,
-.montara-lang-switch button:focus-visible,
-.montara-card:focus-visible {
-  outline: 3px solid #B18A5A;
-  outline-offset: 3px;
-}
-
-#montara-send-button:disabled,
-.montara-card[aria-disabled="true"] {
-  cursor: not-allowed;
-  opacity: .55;
-}
-
 
 #montara-open-button.is-hidden {
 display:none;
@@ -185,19 +169,19 @@ right:0;
 bottom:0;
 
 
-width:450px;
+width:470px;
 
-height:690px;
+height:730px;
 
 
 max-height:
 calc(100vh - 48px);
 
 
-background:#F6F1EA;
+background:#FBF8F2;
 
 
-border-radius:26px;
+border-radius:28px;
 
 
 overflow:hidden;
@@ -265,23 +249,17 @@ scale(1);
 
 .montara-chat-top {
 
-background:
-linear-gradient(
-135deg,
-#2F3A34,
-#4F6B5A
-);
+background:#2F6648;
 
 
-padding:
-18px 20px;
+padding:18px 20px;
 
 
 display:flex;
 
 align-items:center;
 
-gap:12px;
+gap:10px;
 
 
 color:white;
@@ -296,7 +274,7 @@ display:flex;
 
 align-items:center;
 
-gap:14px;
+gap:12px;
 
 flex:1;
 
@@ -306,11 +284,11 @@ flex:1;
 
 .montara-logo {
 
-width:52px;
+width:58px;
 
-height:52px;
+height:58px;
 
-min-width:52px;
+min-width:58px;
 
 
 border-radius:50%;
@@ -322,8 +300,7 @@ background:white;
 overflow:hidden;
 
 
-border:
-2px solid #B18A5A;
+border:1px solid rgba(255,255,255,.65);
 
 }
 
@@ -347,9 +324,9 @@ object-fit:cover;
 
 margin:0;
 
-font-size:20px;
+font-size:17px;
 
-font-weight:800;
+font-weight:700;
 
 color:white;
 
@@ -372,15 +349,17 @@ margin:
 
 font-size:12px;
 
+color:rgba(255,255,255,.9);
+
 }
 
 
 
 .montara-status-dot {
 
-width:8px;
+width:7px;
 
-height:8px;
+height:7px;
 
 
 background:#3ED17A;
@@ -428,12 +407,15 @@ rgba(62,209,122,0);
 
 display:flex;
 
-background:
-rgba(255,255,255,.15);
+background:transparent;
 
-padding:3px;
+padding:0;
 
-border-radius:999px;
+border:1px solid rgba(255,255,255,.55);
+
+border-radius:18px;
+
+overflow:hidden;
 
 }
 
@@ -447,14 +429,13 @@ background:transparent;
 color:white;
 
 
-padding:
-6px 8px;
+padding:8px 10px;
 
 
-border-radius:999px;
+border-radius:0;
 
 
-font-size:11px;
+font-size:12px;
 
 
 cursor:pointer;
@@ -464,10 +445,20 @@ cursor:pointer;
 
 .montara-lang-switch .active {
 
-background:white;
+background:rgba(255,255,255,.16);
 
-color:#2F3A34;
+color:white;
 
+}
+
+.montara-lang-switch button + button {
+  border-left:1px solid rgba(255,255,255,.55);
+}
+
+.montara-header-actions {
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
 
 
@@ -476,9 +467,9 @@ color:#2F3A34;
 
 #montara-close-button {
 
-width:42px;
+width:28px;
 
-height:42px;
+height:28px;
 
 
 border:none;
@@ -486,14 +477,15 @@ border:none;
 border-radius:50%;
 
 
-background:
-rgba(255,255,255,.15);
+background:transparent;
 
 
 color:white;
 
 
-font-size:30px;
+font-size:26px;
+
+line-height:1;
 
 
 cursor:pointer;
@@ -509,13 +501,13 @@ cursor:pointer;
 flex:1;
 
 
-padding:22px;
+padding:14px 20px 18px;
 
 
 overflow-y:auto;
 
 
-background:#F6F1EA;
+background:#FBF8F2;
 
 }
 
@@ -526,10 +518,20 @@ background:#F6F1EA;
 display:flex;
 
 
-gap:10px;
+gap:14px;
 
 
-margin-bottom:18px;
+margin-bottom:16px;
+
+padding:14px;
+
+background:#EDF3EC;
+
+border:1px solid #D7E0D6;
+
+border-radius:12px;
+
+align-items:center;
 
 
 animation:
@@ -566,11 +568,11 @@ translateY(0);
 
 .montara-avatar {
 
-width:68px;
+width:54px;
 
-height:68px;
+height:54px;
 
-min-width:68px;
+min-width:54px;
 
 
 border-radius:50%;
@@ -582,8 +584,7 @@ overflow:hidden;
 background:white;
 
 
-border:
-3px solid white;
+border:2px solid white;
 
 }
 
@@ -591,29 +592,17 @@ border:
 
 .montara-welcome-card {
 
-background:
-linear-gradient(
-135deg,
-#2F3A34,
-#4F6B5A
-);
+background:transparent;
 
+color:#25322B;
 
-color:white;
+padding:0;
 
+border-radius:0;
 
-padding:14px;
+max-width:none;
 
-
-border-radius:14px;
-
-
-max-width:260px;
-
-
-box-shadow:
-0 10px 24px
-rgba(47,58,52,.22);
+box-shadow:none;
 
 }
 
@@ -625,14 +614,14 @@ font-size:15px;
 
 display:block;
 
-margin-bottom:6px;
+margin-bottom:7px;
 
 }
 
 
 .montara-welcome-card p {
 
-font-size:12px;
+font-size:13px;
 
 line-height:1.4;
 
@@ -645,32 +634,7 @@ margin:0;
 /* TRUST BADGE */
 
 .montara-trust {
-
-margin-top:12px;
-
-padding-top:10px;
-
-
-border-top:
-1px solid
-rgba(177,138,90,.25);
-
-
-font-size:10px;
-
-line-height:1.6;
-
-
-color:#D7C3A5;
-
-
-font-weight:400;
-
-
-letter-spacing:.2px;
-
-
-opacity:.85;
+display:none;
 
 }
 
@@ -687,7 +651,7 @@ grid-template-columns:
 1fr 1fr;
 
 
-gap:10px;
+gap:8px;
 
 }
 
@@ -695,14 +659,13 @@ gap:10px;
 
 .montara-card {
 
-background:white;
+background:#2F6648;
 
 
-border-radius:14px;
+border-radius:12px;
 
 
-padding:
-11px 12px;
+padding:10px 12px;
 
 
 display:flex;
@@ -710,15 +673,23 @@ display:flex;
 align-items:center;
 
 
-gap:10px;
+gap:8px;
 
 
 cursor:pointer;
 
 
-box-shadow:
-0 5px 14px
-rgba(47,58,52,.1);
+box-shadow:none;
+
+border:1px solid #2F6648;
+
+min-height:58px;
+
+justify-content:center;
+
+flex-direction:column;
+
+text-align:center;
 
 
 transition:.18s ease;
@@ -729,7 +700,7 @@ transition:.18s ease;
 
 .montara-card:hover {
 
-background:#EFE6DB;
+background:#285B3F;
 
 transform:
 translateY(-2px);
@@ -748,37 +719,42 @@ scale(.96);
 
 
 .montara-card-icon {
+width:24px;
+height:24px;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
 
-font-size:22px;
+}
 
+.montara-card-icon svg {
+  width:24px;
+  height:24px;
+  display:block;
+  stroke:currentColor;
 }
 
 
 
 .montara-card-title {
 
-font-size:13px;
+font-size:12px;
 
 
-font-weight:800;
+font-weight:500;
 
 
-color:#2F3A34;
+color:white;
 
 }
 
 
 
 .montara-card-subtitle {
-
-font-size:11px;
-
-
-color:#7A6F66;
+display:none;
 
 }
-
-
 
 /* MESSAGES */
 
@@ -788,8 +764,7 @@ color:#7A6F66;
 display:flex;
 
 
-margin:
-12px 0;
+margin:10px 0;
 
 
 animation:
@@ -810,7 +785,7 @@ justify-content:flex-end;
 
 .montara-message.bot {
 
-gap:10px;
+gap:8px;
 
 }
 
@@ -818,11 +793,11 @@ gap:10px;
 
 .montara-bot-avatar {
 
-width:32px;
+width:28px;
 
-height:32px;
+height:28px;
 
-min-width:32px;
+min-width:28px;
 
 
 border-radius:50%;
@@ -839,14 +814,13 @@ background:white;
 
 .montara-bubble {
 
-max-width:82%;
+max-width:78%;
 
 
-padding:
-13px 15px;
+padding:11px 14px;
 
 
-border-radius:16px;
+border-radius:12px;
 
 
 font-size:14px;
@@ -874,7 +848,7 @@ white-space:pre-wrap;
 
 .user .montara-bubble {
 
-background:#4F6B5A;
+background:#2F6648;
 
 
 color:white;
@@ -885,10 +859,12 @@ color:white;
 
 .bot .montara-bubble {
 
-background:white;
+background:#FFFEFB;
 
 
 color:#222;
+
+border:1px solid #E7E1D9;
 
 }
 
@@ -1069,14 +1045,15 @@ opacity:1;
 display:flex;
 
 
-gap:10px;
+gap:0;
 
 
-padding:
-16px 18px 12px;
+padding:10px 20px 6px;
 
 
-background:#E8DED2;
+background:#F4EFE7;
+
+position:relative;
 
 }
 
@@ -1084,9 +1061,9 @@ background:#E8DED2;
 
 #montara-reset-button {
 
-width:42px;
+width:30px;
 
-height:42px;
+height:30px;
 
 
 border:none;
@@ -1095,7 +1072,11 @@ border:none;
 border-radius:50%;
 
 
-background:white;
+background:transparent;
+
+color:white;
+
+font-size:20px;
 
 
 cursor:pointer;
@@ -1109,20 +1090,23 @@ cursor:pointer;
 flex:1;
 
 
-border:none;
+border:1px solid #E0D9D0;
 
 
 outline:none;
 
 
-padding:
-13px 16px;
+padding:12px 54px 12px 16px;
 
 
 border-radius:999px;
 
 
-font-size:14px;
+font-size:13px;
+
+min-height:44px;
+
+background:#FFFEFB;
 
 }
 
@@ -1130,9 +1114,9 @@ font-size:14px;
 
 #montara-send-button {
 
-width:46px;
+width:38px;
 
-height:46px;
+height:38px;
 
 
 border:none;
@@ -1141,7 +1125,7 @@ border:none;
 border-radius:50%;
 
 
-background:#B18A5A;
+background:#2F6648;
 
 
 color:white;
@@ -1150,8 +1134,32 @@ color:white;
 cursor:pointer;
 
 
-font-size:20px;
+font-size:18px;
 
+position:absolute;
+
+right:24px;
+
+top:13px;
+
+}
+
+#montara-send-button:disabled,
+#montara-chat-input:disabled,
+.montara-card[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+#montara-open-button:focus-visible,
+#montara-close-button:focus-visible,
+#montara-reset-button:focus-visible,
+#montara-send-button:focus-visible,
+.montara-lang-switch button:focus-visible,
+.montara-card:focus-visible,
+#montara-chat-input:focus-visible {
+  outline: 3px solid #B18A5A;
+  outline-offset: 2px;
 }
 
 
@@ -1168,19 +1176,19 @@ scale(.96);
 
 .montara-powered {
 
-background:#E8DED2;
+background:#F4EFE7;
 
 
 text-align:center;
 
 
-font-size:12px;
+font-size:11px;
 
 
 color:#7A6F66;
 
 
-padding-bottom:12px;
+padding:0 0 9px;
 
 }
 
@@ -1236,7 +1244,33 @@ padding-bottom:12px;
   }
 
   .montara-quick-buttons {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .montara-chat-top {
+    padding:14px;
+  }
+
+  .montara-logo {
+    width:48px;
+    height:48px;
+    min-width:48px;
+  }
+
+  .montara-brand h3 {
+    font-size:15px;
+  }
+
+  .montara-status {
+    font-size:10px;
+  }
+
+  .montara-lang-switch button {
+    padding:7px 8px;
+  }
+
+  .montara-header-actions {
+    gap:4px;
   }
 }
 
@@ -1256,7 +1290,7 @@ wrapper.innerHTML=`
 
   <!-- SMART POPUP -->
 
-  <div id="montara-nudge" data-i18n="nudge" role="status" aria-live="polite">
+  <div id="montara-nudge" data-i18n="nudge">
     👋 Haben Sie Fragen zu Ihrem Aufenthalt?
   </div>
 
@@ -1264,7 +1298,7 @@ wrapper.innerHTML=`
 
   <!-- CLOSED BUTTON -->
 
-  <button id="montara-open-button" type="button" aria-label="Open AlpenParks Concierge" aria-haspopup="dialog" aria-controls="montara-chat-panel" aria-expanded="false">
+  <button id="montara-open-button" type="button" aria-label="Open AlpenParks Concierge" aria-controls="montara-chat-panel" aria-expanded="false">
 
     <span class="montara-open-icon">
       💬
@@ -1283,7 +1317,7 @@ wrapper.innerHTML=`
   <!-- CHAT WINDOW -->
 
 
-  <div id="montara-chat-panel" role="dialog" aria-modal="false" aria-labelledby="montara-chat-title" aria-hidden="true">
+  <div id="montara-chat-panel" role="dialog" aria-modal="true" aria-labelledby="montara-chat-title" aria-hidden="true">
 
 
 
@@ -1322,7 +1356,7 @@ wrapper.innerHTML=`
 
 
             <span data-i18n="status">
-              24/7 verfügbar · Antwortet sofort
+              Online · AI Concierge
             </span>
 
 
@@ -1339,38 +1373,24 @@ wrapper.innerHTML=`
 
 
 
-      <!-- LANGUAGE SWITCH -->
+      <div class="montara-header-actions">
 
+        <!-- LANGUAGE SWITCH -->
+        <div class="montara-lang-switch">
 
-      <div class="montara-lang-switch">
+          <button type="button" aria-label="Deutsch"
+          class="active"
+          data-lang="de">DE</button>
 
-        <button type="button" aria-label="Deutsch"
-        class="active"
-        data-lang="de">
+          <button type="button" aria-label="English" data-lang="en">EN</button>
 
-          DEU
+        </div>
 
-        </button>
+        <button id="montara-reset-button" type="button" aria-label="Start a new conversation">↻</button>
 
-
-        <button type="button" data-lang="en" aria-label="English">
-
-          ENG
-
-        </button>
-
+        <button id="montara-close-button" type="button" aria-label="Close AlpenParks Concierge">×</button>
 
       </div>
-
-
-
-
-
-      <button id="montara-close-button" type="button" aria-label="Close AlpenParks Concierge">
-
-        ×
-
-      </button>
 
 
 
@@ -1432,10 +1452,7 @@ wrapper.innerHTML=`
 
 
             <p data-i18n="welcomeText">
-
-              Ich helfe Ihnen gerne bei Unterkünften,
-              Buchungen, Frühstück, Wellness und
-              allgemeinen Hotelinformationen.
+              Wie kann ich Ihnen heute helfen?
 
 
             </p>
@@ -1494,10 +1511,8 @@ wrapper.innerHTML=`
 
 
 
-          <div class="montara-card-icon">
-
-            🛏️
-
+          <div class="montara-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19v-8m18 8v-8M3 16h18M5 11V7h6a3 3 0 0 1 3 3v1m0 0h4a3 3 0 0 1 3 3v2M5 7V5h4a2 2 0 0 1 2 2"/></svg>
           </div>
 
 
@@ -1510,7 +1525,7 @@ wrapper.innerHTML=`
             data-i18n="cardAccommodationTitle">
 
 
-              Unterkunft
+              Zimmer & Apartments
 
 
             </div>
@@ -1550,10 +1565,8 @@ wrapper.innerHTML=`
 
 
 
-          <div class="montara-card-icon">
-
-            📅
-
+          <div class="montara-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="m9 15 2 2 4-4"/></svg>
           </div>
 
 
@@ -1565,7 +1578,7 @@ wrapper.innerHTML=`
             class="montara-card-title"
             data-i18n="cardBookingTitle">
 
-              Reservierung
+              Verfügbarkeit prüfen
 
             </div>
 
@@ -1600,10 +1613,8 @@ wrapper.innerHTML=`
         data-message="Wie viel kostet das Frühstück?">
 
 
-          <div class="montara-card-icon">
-
-            ☕
-
+          <div class="montara-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h12v5a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5V9Z"/><path d="M17 11h1a3 3 0 0 1 0 6h-2M7 22h10M9 2v3m4-3v3"/></svg>
           </div>
 
 
@@ -1652,10 +1663,8 @@ wrapper.innerHTML=`
         data-message="Wie sind die Öffnungszeiten des Spa- und Wellnessbereichs?">
 
 
-          <div class="montara-card-icon">
-
-            🪷
-
+          <div class="montara-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4.5 0-8-2.7-8-6.5 3.2-.3 6.2 1 8 3.5 1.8-2.5 4.8-3.8 8-3.5 0 3.8-3.5 6.5-8 6.5Z"/><path d="M12 18c-2.7-2.3-3.8-5.6 0-10 3.8 4.4 2.7 7.7 0 10Z"/><path d="M8.4 15.2C6 13.8 5.1 11.5 6 8.5c2.2.6 4 1.9 5 3.8m4.6 2.9c2.4-1.4 3.3-3.7 2.4-6.7-2.2.6-4 1.9-5 3.8M12 8V3"/></svg>
           </div>
 
 
@@ -1702,10 +1711,8 @@ wrapper.innerHTML=`
         data-message="Sind Parkplätze vorhanden?">
 
 
-          <div class="montara-card-icon">
-
-            🚗
-
+          <div class="montara-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m5 11 2-5h10l2 5M4 11h16a2 2 0 0 1 2 2v5H2v-5a2 2 0 0 1 2-2Z"/><path d="M5 18v2m14-2v2M6 14h.01M18 14h.01"/></svg>
           </div>
 
 
@@ -1752,10 +1759,8 @@ wrapper.innerHTML=`
         data-message="Wie kann ich die Rezeption kontaktieren?">
 
 
-          <div class="montara-card-icon">
-
-            📞
-
+          <div class="montara-card-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM9.7 21h4.6"/><path d="M12 3V1"/></svg>
           </div>
 
 
@@ -1820,20 +1825,10 @@ wrapper.innerHTML=`
 
 
 
-      <button id="montara-reset-button" type="button" aria-label="Start a new conversation">
-
-        ↺
-
-      </button>
-
-
-
-
       <input
       id="montara-chat-input"
-      aria-label="Message"
+      aria-label="Chat message"
       autocomplete="off"
-      maxlength="2000"
       placeholder="Nachricht schreiben...">
 
 
@@ -1864,7 +1859,7 @@ wrapper.innerHTML=`
 
     <div class="montara-powered">
 
-      AlpenParks Intelligence
+      Powered by AlpenParks Intelligence
 
     </div>
 
@@ -1889,11 +1884,11 @@ document.body.appendChild(wrapper);
 const MONTARA_WEBHOOK_URL =
 "https://alpenparkstaxacher.app.n8n.cloud/webhook/hotel-chat";
 
+const MONTARA_REQUEST_TIMEOUT_MS = 40000;
+
 
 const MONTARA_AVATAR_URL =
 "https://images.squarespace-cdn.com/content/6a23f2747f909d53b11bcf1f/ef01d550-b6b2-4fc6-82e5-3eb769d23824/ChatGPT+Image+18+%D0%B8%D1%8E%D0%BD.+2026+%D0%B3.%2C+18_37_33.png?content-type=image%2Fpng";
-
-const MONTARA_REQUEST_TIMEOUT_MS = 40000;
 
 
 
@@ -1924,6 +1919,9 @@ document.getElementById("montara-nudge");
 const greeting =
 document.getElementById("montara-dynamic-greeting");
 
+let requestInFlight = false;
+let activeRequestController = null;
+
 
 
 let currentLang =
@@ -1944,9 +1942,6 @@ localStorage.setItem(
 "montara_session_id",
 sessionId
 );
-
-let isSending = false;
-let activeRequestController = null;
 
 
 
@@ -1970,11 +1965,11 @@ headerTitle:
 
 
 status:
-"24/7 verfügbar · Antwortet sofort",
+"Online · AI Concierge",
 
 
 welcomeText:
-"Ich helfe Ihnen gerne bei Unterkünften, Buchungen, Frühstück, Wellness und allgemeinen Hotelinformationen.",
+"Ich bin Ihr digitaler Concierge. Schreiben Sie mir einfach in Ihrer bevorzugten Sprache.<br><br>Ich helfe Ihnen gerne bei Fragen zu Zimmern, Verfügbarkeit, Frühstück, Wellness, Parken und Ihrem Aufenthalt.",
 
 
 trust:
@@ -1991,9 +1986,6 @@ fallback:
 
 error:
 "Entschuldigung, etwas ist schiefgelaufen. Bitte kontaktieren Sie die Rezeption.",
-
-timeout:
-"Die Antwort dauert länger als erwartet. Bitte versuchen Sie es erneut oder kontaktieren Sie die Rezeption.",
 
 
 
@@ -2028,14 +2020,14 @@ reception:
 
 
 cardAccommodationTitle:
-"Unterkunft",
+"Zimmer & Apartments",
 
 cardAccommodationSub:
 "Zimmer & Apartments",
 
 
 cardBookingTitle:
-"Reservierung",
+"Verfügbarkeit prüfen",
 
 cardBookingSub:
 "Aufenthalt anfragen",
@@ -2090,11 +2082,11 @@ headerTitle:
 
 
 status:
-"Available 24/7 · Replies instantly",
+"Online · AI Concierge",
 
 
 welcomeText:
-"I can assist you with accommodation, bookings, breakfast, wellness and general hotel information.",
+"I’m your digital concierge. Feel free to message me in your preferred language.<br><br>I can help with rooms, availability, breakfast, wellness, parking and anything related to your stay.",
 
 
 trust:
@@ -2111,9 +2103,6 @@ fallback:
 
 error:
 "Sorry, something went wrong. Please contact reception.",
-
-timeout:
-"The response is taking longer than expected. Please try again or contact reception.",
 
 
 
@@ -2148,14 +2137,14 @@ reception:
 
 
 cardAccommodationTitle:
-"Accommodation",
+"Rooms & Apartments",
 
 cardAccommodationSub:
 "Rooms & apartments",
 
 
 cardBookingTitle:
-"Booking Inquiry",
+"Check availability",
 
 cardBookingSub:
 "Request a stay",
@@ -2255,11 +2244,6 @@ document
 btn.classList.toggle(
 "active",
 btn.dataset.lang === lang
-);
-
-btn.setAttribute(
-  "aria-pressed",
-  String(btn.dataset.lang === lang)
 );
 
 });
@@ -2462,6 +2446,11 @@ function addMessage(
       img.addEventListener(
         "error",
         () => {
+          console.warn(
+            "Could not load room image:",
+            imageUrl
+          );
+
           link.remove();
 
           if (
@@ -2533,7 +2522,7 @@ typing.innerHTML =
 <img src="${MONTARA_AVATAR_URL}" alt="">
 </div>
 
-<div class="montara-typing">
+<div class="montara-typing" role="status" aria-label="Concierge is typing">
 <span></span>
 <span></span>
 <span></span>
@@ -2562,28 +2551,29 @@ if(t) t.remove();
 
 }
 
+function setRequestState(isLoading) {
+  requestInFlight = isLoading;
+  input.disabled = isLoading;
+  sendButton.disabled = isLoading;
+  sendButton.setAttribute("aria-busy", String(isLoading));
 
-
-
-
-function setBusy(busy) {
-  isSending = busy;
-  input.disabled = busy;
-  sendButton.disabled = busy;
-
-  document.querySelectorAll(".montara-card").forEach(card => {
-    card.setAttribute("aria-disabled", String(busy));
-  });
-
-  body.setAttribute("aria-busy", String(busy));
+  document
+    .querySelectorAll(".montara-card")
+    .forEach(card => {
+      card.setAttribute("aria-disabled", String(isLoading));
+      card.tabIndex = isLoading ? -1 : 0;
+    });
 }
+
+
+
 
 
 async function sendMessage(
   textOverride = "",
   messageSource = "typed"
 ) {
-  if (isSending) {
+  if (requestInFlight) {
     return;
   }
 
@@ -2615,12 +2605,11 @@ async function sendMessage(
 
   addTyping();
 
+  setRequestState(true);
   const controller = new AbortController();
   activeRequestController = controller;
-  setBusy(true);
-
   const timeoutId = setTimeout(
-    () => controller.abort("timeout"),
+    () => controller.abort(),
     MONTARA_REQUEST_TIMEOUT_MS
   );
 
@@ -2660,8 +2649,6 @@ async function sendMessage(
 
     const data =
       await response.json();
-
-    removeTyping();
 
 let responseData =
   data && typeof data === "object"
@@ -2710,9 +2697,7 @@ if (typeof reply === "string") {
         images =
           parsed.images;
       }
-    } catch (error) {
-      // Keep the original text when output is not valid JSON.
-    }
+    } catch (error) {}
   }
 }
 
@@ -2741,7 +2726,6 @@ if (
       nested.images;
   }
 }
-
 addMessage(
   "bot",
   String(reply || ""),
@@ -2750,29 +2734,18 @@ addMessage(
 
 
   } catch (error) {
-    removeTyping();
-
-    if (activeRequestController === controller) {
-      const wasTimeout =
-        controller.signal.aborted &&
-        controller.signal.reason === "timeout";
-
+    if (controller.signal.reason !== "reset") {
       addMessage(
         "bot",
-        wasTimeout
-          ? translations[currentLang].timeout
-          : translations[currentLang].error
+        translations[currentLang].error
       );
     }
   } finally {
     clearTimeout(timeoutId);
-
-    if (activeRequestController === controller) {
-      activeRequestController = null;
-      removeTyping();
-      setBusy(false);
-      input.focus();
-    }
+    removeTyping();
+    activeRequestController = null;
+    setRequestState(false);
+    input.focus();
   }
 }
 
@@ -2789,11 +2762,12 @@ nudge.classList.remove("show");
 
 panel.classList.add("is-open");
 
+panel.setAttribute("aria-hidden", "false");
+openButton.setAttribute("aria-expanded", "true");
+
 
 openButton.classList.add("is-hidden");
 
-openButton.setAttribute("aria-expanded", "true");
-panel.setAttribute("aria-hidden", "false");
 input.focus();
 
 
@@ -2807,11 +2781,12 @@ closeButton.onclick = ()=>{
 
 panel.classList.remove("is-open");
 
+panel.setAttribute("aria-hidden", "true");
+openButton.setAttribute("aria-expanded", "false");
+
 
 openButton.classList.remove("is-hidden");
 
-openButton.setAttribute("aria-expanded", "false");
-panel.setAttribute("aria-hidden", "true");
 openButton.focus();
 
 
@@ -2857,11 +2832,8 @@ document
   .querySelectorAll(".montara-card")
   .forEach(card => {
 
-    const activateCard = () => {
-      if (isSending) {
-        return;
-      }
-
+    card.onclick = () => {
+      if (requestInFlight) return;
       const key =
         card.dataset.key;
 
@@ -2878,11 +2850,10 @@ document
       );
     };
 
-    card.onclick = activateCard;
     card.addEventListener("keydown", event => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        activateCard();
+        card.click();
       }
     });
 
@@ -2917,11 +2888,7 @@ resetButton.onclick=()=>{
 
 if (activeRequestController) {
   activeRequestController.abort("reset");
-  activeRequestController = null;
 }
-
-removeTyping();
-setBusy(false);
 
 
 sessionId =
@@ -2945,11 +2912,8 @@ document.querySelector(
 ".montara-quick-buttons"
 ).style.display="grid";
 
-input.focus();
-
 
 };
-
 
 document.addEventListener("keydown", event => {
   if (
