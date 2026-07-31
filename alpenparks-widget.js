@@ -1,10 +1,16 @@
 (function(){
 
-if(document.getElementById("montara-concierge")) return;
+/* Replace an older copy when CodePen or the host page loads the widget twice. */
+const existingWidget = document.getElementById("montara-concierge");
+const existingStyles = document.getElementById("montara-concierge-styles");
+
+if (existingWidget) existingWidget.remove();
+if (existingStyles) existingStyles.remove();
 
 
 /* CSS */
 const style=document.createElement("style");
+style.id="montara-concierge-styles";
 
 style.innerHTML=`
 
@@ -522,18 +528,10 @@ background:#FBF8F2;
 display:flex;
 
 
-gap:14px;
+gap:10px;
 
 
-margin-bottom:16px;
-
-padding:14px;
-
-background:#EDF3EC;
-
-border:1px solid #D7E0D6;
-
-border-radius:12px;
+margin-bottom:18px;
 
 align-items:center;
 
@@ -572,11 +570,11 @@ translateY(0);
 
 .montara-avatar {
 
-width:54px;
+width:68px;
 
-height:54px;
+height:68px;
 
-min-width:54px;
+min-width:68px;
 
 
 border-radius:50%;
@@ -588,7 +586,7 @@ overflow:hidden;
 background:white;
 
 
-border:2px solid white;
+border:3px solid white;
 
 }
 
@@ -596,17 +594,23 @@ border:2px solid white;
 
 .montara-welcome-card {
 
-background:transparent;
+background:linear-gradient(
+135deg,
+#2F3A34,
+#4F6B5A
+);
 
-color:#25322B;
+color:white;
 
-padding:0;
+padding:16px;
 
-border-radius:0;
+border-radius:14px;
 
-max-width:none;
+max-width:260px;
 
-box-shadow:none;
+box-shadow:
+0 10px 24px
+rgba(47,58,52,.22);
 
 }
 
@@ -663,11 +667,7 @@ gap:8px;
 
 .montara-card {
 
-background:linear-gradient(
-135deg,
-#2F3A34,
-#4F6B5A
-);
+background:white;
 
 
 border-radius:12px;
@@ -687,7 +687,9 @@ gap:8px;
 cursor:pointer;
 
 
-box-shadow:none;
+box-shadow:
+0 5px 14px
+rgba(47,58,52,.1);
 
 border:1px solid #2F3A34;
 
@@ -708,11 +710,7 @@ transition:.18s ease;
 
 .montara-card:hover {
 
-background:linear-gradient(
-135deg,
-#27312C,
-#425A4C
-);
+background:#EDF3EC;
 
 transform:
 translateY(-2px);
@@ -733,7 +731,7 @@ scale(.96);
 .montara-card-icon {
 width:24px;
 height:24px;
-color:white;
+color:#2F3A34;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -757,7 +755,7 @@ font-size:12px;
 font-weight:500;
 
 
-color:white;
+color:#2F3A34;
 
 }
 
@@ -2102,7 +2100,7 @@ headerTitle:
 
 
 status:
-"Online · AI concierge",
+"Online · AI Concierge",
 
 
 welcomeText:
