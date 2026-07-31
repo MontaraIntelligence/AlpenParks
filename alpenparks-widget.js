@@ -2102,7 +2102,7 @@ headerTitle:
 
 
 status:
-"Online · AI concierge",
+"Online · AI Concierge",
 
 
 welcomeText:
