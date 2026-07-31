@@ -126,6 +126,22 @@ transform:translateY(-2px);
 transform:scale(.96);
 }
 
+#montara-open-button:focus-visible,
+#montara-close-button:focus-visible,
+#montara-reset-button:focus-visible,
+#montara-send-button:focus-visible,
+.montara-lang-switch button:focus-visible,
+.montara-card:focus-visible {
+  outline: 3px solid #B18A5A;
+  outline-offset: 3px;
+}
+
+#montara-send-button:disabled,
+.montara-card[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: .55;
+}
+
 
 #montara-open-button.is-hidden {
 display:none;
@@ -1240,7 +1256,7 @@ wrapper.innerHTML=`
 
   <!-- SMART POPUP -->
 
-  <div id="montara-nudge" data-i18n="nudge">
+  <div id="montara-nudge" data-i18n="nudge" role="status" aria-live="polite">
     👋 Haben Sie Fragen zu Ihrem Aufenthalt?
   </div>
 
@@ -1248,7 +1264,7 @@ wrapper.innerHTML=`
 
   <!-- CLOSED BUTTON -->
 
-  <button id="montara-open-button">
+  <button id="montara-open-button" type="button" aria-label="Open AlpenParks Concierge" aria-haspopup="dialog" aria-controls="montara-chat-panel" aria-expanded="false">
 
     <span class="montara-open-icon">
       💬
@@ -1267,7 +1283,7 @@ wrapper.innerHTML=`
   <!-- CHAT WINDOW -->
 
 
-  <div id="montara-chat-panel">
+  <div id="montara-chat-panel" role="dialog" aria-modal="false" aria-labelledby="montara-chat-title" aria-hidden="true">
 
 
 
@@ -1284,7 +1300,7 @@ wrapper.innerHTML=`
 
         <div class="montara-logo">
 
-          <img src="https://res.cloudinary.com/seekda/image/upload/w_375,h_210,c_limit,f_auto,fl_lossy,q_auto/production/S005886/app-icon_310x310.png">
+          <img src="https://res.cloudinary.com/seekda/image/upload/w_375,h_210,c_limit,f_auto,fl_lossy,q_auto/production/S005886/app-icon_310x310.png" alt="AlpenParks">
 
         </div>
 
@@ -1294,7 +1310,7 @@ wrapper.innerHTML=`
         <div>
 
 
-          <h3 data-i18n="headerTitle">
+          <h3 id="montara-chat-title" data-i18n="headerTitle">
             AlpenParks Concierge
           </h3>
 
@@ -1328,7 +1344,7 @@ wrapper.innerHTML=`
 
       <div class="montara-lang-switch">
 
-        <button 
+        <button type="button" aria-label="Deutsch"
         class="active"
         data-lang="de">
 
@@ -1337,7 +1353,7 @@ wrapper.innerHTML=`
         </button>
 
 
-        <button data-lang="en">
+        <button type="button" data-lang="en" aria-label="English">
 
           ENG
 
@@ -1350,7 +1366,7 @@ wrapper.innerHTML=`
 
 
 
-      <button id="montara-close-button">
+      <button id="montara-close-button" type="button" aria-label="Close AlpenParks Concierge">
 
         ×
 
@@ -1390,7 +1406,7 @@ wrapper.innerHTML=`
         <div class="montara-avatar">
 
 
-          <img src="https://images.squarespace-cdn.com/content/6a23f2747f909d53b11bcf1f/ef01d550-b6b2-4fc6-82e5-3eb769d23824/ChatGPT+Image+18+%D0%B8%D1%8E%D0%BD.+2026+%D0%B3.%2C+18_37_33.png?content-type=image%2Fpng">
+          <img src="https://images.squarespace-cdn.com/content/6a23f2747f909d53b11bcf1f/ef01d550-b6b2-4fc6-82e5-3eb769d23824/ChatGPT+Image+18+%D0%B8%D1%8E%D0%BD.+2026+%D0%B3.%2C+18_37_33.png?content-type=image%2Fpng" alt="AlpenParks Concierge">
 
 
         </div>
@@ -1472,7 +1488,7 @@ wrapper.innerHTML=`
 
 
         <div
-        class="montara-card"
+        class="montara-card" role="button" tabindex="0"
         data-key="accommodation"
         data-message="Welche Unterkunftsarten bieten Sie an?">
 
@@ -1528,7 +1544,7 @@ wrapper.innerHTML=`
 
 
         <div
-        class="montara-card"
+        class="montara-card" role="button" tabindex="0"
         data-key="booking"
         data-message="Ich möchte eine Buchungsanfrage stellen.">
 
@@ -1579,7 +1595,7 @@ wrapper.innerHTML=`
 
 
         <div
-        class="montara-card"
+        class="montara-card" role="button" tabindex="0"
         data-key="breakfast"
         data-message="Wie viel kostet das Frühstück?">
 
@@ -1631,7 +1647,7 @@ wrapper.innerHTML=`
 
 
         <div
-        class="montara-card"
+        class="montara-card" role="button" tabindex="0"
         data-key="wellness"
         data-message="Wie sind die Öffnungszeiten des Spa- und Wellnessbereichs?">
 
@@ -1681,7 +1697,7 @@ wrapper.innerHTML=`
 
 
         <div
-        class="montara-card"
+        class="montara-card" role="button" tabindex="0"
         data-key="parking"
         data-message="Sind Parkplätze vorhanden?">
 
@@ -1731,7 +1747,7 @@ wrapper.innerHTML=`
 
 
         <div
-        class="montara-card"
+        class="montara-card" role="button" tabindex="0"
         data-key="reception"
         data-message="Wie kann ich die Rezeption kontaktieren?">
 
@@ -1804,7 +1820,7 @@ wrapper.innerHTML=`
 
 
 
-      <button id="montara-reset-button">
+      <button id="montara-reset-button" type="button" aria-label="Start a new conversation">
 
         ↺
 
@@ -1815,13 +1831,16 @@ wrapper.innerHTML=`
 
       <input
       id="montara-chat-input"
+      aria-label="Message"
+      autocomplete="off"
+      maxlength="2000"
       placeholder="Nachricht schreiben...">
 
 
 
 
 
-      <button id="montara-send-button">
+      <button id="montara-send-button" type="button" aria-label="Send message">
 
         ➤
 
@@ -1874,6 +1893,8 @@ const MONTARA_WEBHOOK_URL =
 const MONTARA_AVATAR_URL =
 "https://images.squarespace-cdn.com/content/6a23f2747f909d53b11bcf1f/ef01d550-b6b2-4fc6-82e5-3eb769d23824/ChatGPT+Image+18+%D0%B8%D1%8E%D0%BD.+2026+%D0%B3.%2C+18_37_33.png?content-type=image%2Fpng";
 
+const MONTARA_REQUEST_TIMEOUT_MS = 40000;
+
 
 
 const openButton =
@@ -1924,6 +1945,9 @@ localStorage.setItem(
 sessionId
 );
 
+let isSending = false;
+let activeRequestController = null;
+
 
 
 
@@ -1967,6 +1991,9 @@ fallback:
 
 error:
 "Entschuldigung, etwas ist schiefgelaufen. Bitte kontaktieren Sie die Rezeption.",
+
+timeout:
+"Die Antwort dauert länger als erwartet. Bitte versuchen Sie es erneut oder kontaktieren Sie die Rezeption.",
 
 
 
@@ -2084,6 +2111,9 @@ fallback:
 
 error:
 "Sorry, something went wrong. Please contact reception.",
+
+timeout:
+"The response is taking longer than expected. Please try again or contact reception.",
 
 
 
@@ -2225,6 +2255,11 @@ document
 btn.classList.toggle(
 "active",
 btn.dataset.lang === lang
+);
+
+btn.setAttribute(
+  "aria-pressed",
+  String(btn.dataset.lang === lang)
 );
 
 });
@@ -2427,11 +2462,6 @@ function addMessage(
       img.addEventListener(
         "error",
         () => {
-          console.warn(
-            "Could not load room image:",
-            imageUrl
-          );
-
           link.remove();
 
           if (
@@ -2500,7 +2530,7 @@ typing.innerHTML =
 
 `
 <div class="montara-bot-avatar">
-<img src="${MONTARA_AVATAR_URL}">
+<img src="${MONTARA_AVATAR_URL}" alt="">
 </div>
 
 <div class="montara-typing">
@@ -2536,10 +2566,27 @@ if(t) t.remove();
 
 
 
+function setBusy(busy) {
+  isSending = busy;
+  input.disabled = busy;
+  sendButton.disabled = busy;
+
+  document.querySelectorAll(".montara-card").forEach(card => {
+    card.setAttribute("aria-disabled", String(busy));
+  });
+
+  body.setAttribute("aria-busy", String(busy));
+}
+
+
 async function sendMessage(
   textOverride = "",
   messageSource = "typed"
 ) {
+  if (isSending) {
+    return;
+  }
+
   const typedText =
     input.value.trim();
 
@@ -2568,6 +2615,15 @@ async function sendMessage(
 
   addTyping();
 
+  const controller = new AbortController();
+  activeRequestController = controller;
+  setBusy(true);
+
+  const timeoutId = setTimeout(
+    () => controller.abort("timeout"),
+    MONTARA_REQUEST_TIMEOUT_MS
+  );
+
   try {
     const response = await fetch(
       MONTARA_WEBHOOK_URL,
@@ -2577,6 +2633,8 @@ async function sendMessage(
         headers: {
           "Content-Type": "application/json"
         },
+
+        signal: controller.signal,
 
         body: JSON.stringify({
           action: "sendMessage",
@@ -2621,8 +2679,6 @@ let images =
   Array.isArray(responseData.images)
     ? responseData.images
     : [];
-    console.log("Webhook response:", responseData);
-console.log("Images array:", images);
 
 /*
  * Иногда backend может вернуть весь JSON
@@ -2655,10 +2711,7 @@ if (typeof reply === "string") {
           parsed.images;
       }
     } catch (error) {
-      console.warn(
-        "Could not parse concierge response:",
-        error
-      );
+      // Keep the original text when output is not valid JSON.
     }
   }
 }
@@ -2688,7 +2741,6 @@ if (
       nested.images;
   }
 }
-console.log("addMessage images:", images);
 
 addMessage(
   "bot",
@@ -2698,17 +2750,29 @@ addMessage(
 
 
   } catch (error) {
-    console.error(
-      "Montara widget error:",
-      error
-    );
-
     removeTyping();
 
-    addMessage(
-      "bot",
-      translations[currentLang].error
-    );
+    if (activeRequestController === controller) {
+      const wasTimeout =
+        controller.signal.aborted &&
+        controller.signal.reason === "timeout";
+
+      addMessage(
+        "bot",
+        wasTimeout
+          ? translations[currentLang].timeout
+          : translations[currentLang].error
+      );
+    }
+  } finally {
+    clearTimeout(timeoutId);
+
+    if (activeRequestController === controller) {
+      activeRequestController = null;
+      removeTyping();
+      setBusy(false);
+      input.focus();
+    }
   }
 }
 
@@ -2728,6 +2792,10 @@ panel.classList.add("is-open");
 
 openButton.classList.add("is-hidden");
 
+openButton.setAttribute("aria-expanded", "true");
+panel.setAttribute("aria-hidden", "false");
+input.focus();
+
 
 };
 
@@ -2741,6 +2809,10 @@ panel.classList.remove("is-open");
 
 
 openButton.classList.remove("is-hidden");
+
+openButton.setAttribute("aria-expanded", "false");
+panel.setAttribute("aria-hidden", "true");
+openButton.focus();
 
 
 };
@@ -2785,7 +2857,11 @@ document
   .querySelectorAll(".montara-card")
   .forEach(card => {
 
-    card.onclick = () => {
+    const activateCard = () => {
+      if (isSending) {
+        return;
+      }
+
       const key =
         card.dataset.key;
 
@@ -2801,6 +2877,14 @@ document
         "quick_action"
       );
     };
+
+    card.onclick = activateCard;
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        activateCard();
+      }
+    });
 
   });
 
@@ -2831,6 +2915,14 @@ btn.dataset.lang
 
 resetButton.onclick=()=>{
 
+if (activeRequestController) {
+  activeRequestController.abort("reset");
+  activeRequestController = null;
+}
+
+removeTyping();
+setBusy(false);
+
 
 sessionId =
 crypto.randomUUID();
@@ -2853,8 +2945,20 @@ document.querySelector(
 ".montara-quick-buttons"
 ).style.display="grid";
 
+input.focus();
+
 
 };
+
+
+document.addEventListener("keydown", event => {
+  if (
+    event.key === "Escape" &&
+    panel.classList.contains("is-open")
+  ) {
+    closeButton.click();
+  }
+});
 
 
 
