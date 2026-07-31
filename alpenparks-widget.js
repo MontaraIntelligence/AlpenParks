@@ -290,7 +290,13 @@ flex:1;
 
 }
 
-
+.montara-welcome-divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin: 13px 0;
+  background: rgba(255, 255, 255, 0.22);
+}
 
 .montara-logo {
 
@@ -1322,14 +1328,6 @@ padding:0 0 9px;
   .montara-chat-top {
     padding:14px;
   }
-
-.montara-welcome-divider {
-  display: block;
-  width: 100%;
-  height: 1px;
-  margin: 13px 0;
-  background: rgba(255, 255, 255, 0.22);
-}
 
   .montara-logo {
     width:48px;
