@@ -417,15 +417,53 @@ rgba(62,209,122,0);
 
 display:flex;
 
-background:transparent;
+background:rgba(255,255,255,.15);
 
-padding:0;
+padding:3px;
 
-border:1px solid rgba(255,255,255,.55);
+border:none;
 
-border-radius:18px;
+border-radius:999px;
 
 overflow:hidden;
+
+position:relative;
+
+isolation:isolate;
+
+}
+
+.montara-lang-switch::before {
+
+content:"";
+
+position:absolute;
+
+z-index:0;
+
+top:3px;
+
+left:3px;
+
+width:calc(50% - 3px);
+
+height:calc(100% - 6px);
+
+border-radius:999px;
+
+background:white;
+
+box-shadow:0 2px 8px rgba(25,38,31,.18);
+
+transform:translateX(0);
+
+transition:transform .28s cubic-bezier(.22,.8,.3,1);
+
+}
+
+.montara-lang-switch.is-en::before {
+
+transform:translateX(100%);
 
 }
 
@@ -439,30 +477,38 @@ background:transparent;
 color:white;
 
 
-padding:8px 10px;
+padding:6px 9px;
 
 
-border-radius:0;
+border-radius:999px;
 
 
-font-size:12px;
+font-size:11px;
 
 
 cursor:pointer;
+
+position:relative;
+
+z-index:1;
+
+min-width:34px;
+
+transition:color .22s ease;
 
 }
 
 
 .montara-lang-switch .active {
 
-background:rgba(255,255,255,.16);
+background:transparent;
 
-color:white;
+color:#2F3A34;
 
 }
 
 .montara-lang-switch button + button {
-  border-left:1px solid rgba(255,255,255,.55);
+  border-left:none;
 }
 
 .montara-header-actions {
@@ -1059,7 +1105,7 @@ opacity:1;
 display:flex;
 
 
-gap:0;
+gap:10px;
 
 
 padding:10px 20px 6px;
@@ -1067,7 +1113,7 @@ padding:10px 20px 6px;
 
 background:#F4EFE7;
 
-position:relative;
+align-items:center;
 
 }
 
@@ -1110,7 +1156,7 @@ border:1px solid #E0D9D0;
 outline:none;
 
 
-padding:12px 54px 12px 16px;
+padding:12px 16px;
 
 
 border-radius:999px;
@@ -1128,9 +1174,9 @@ background:#FFFEFB;
 
 #montara-send-button {
 
-width:38px;
+width:44px;
 
-height:38px;
+height:44px;
 
 
 border:none;
@@ -1154,11 +1200,19 @@ cursor:pointer;
 
 font-size:18px;
 
-position:absolute;
+position:static;
 
-right:24px;
+flex:0 0 44px;
 
-top:13px;
+transition:transform .18s ease, box-shadow .18s ease;
+
+}
+
+#montara-send-button:hover:not(:disabled) {
+
+box-shadow:0 6px 14px rgba(47,58,52,.24);
+
+transform:translateY(-1px);
 
 }
 
@@ -2100,7 +2154,7 @@ headerTitle:
 
 
 status:
-"Online · AI Concierge",
+"Online · AI concierge",
 
 
 welcomeText:
@@ -2264,7 +2318,19 @@ btn.classList.toggle(
 btn.dataset.lang === lang
 );
 
+btn.setAttribute(
+"aria-pressed",
+String(btn.dataset.lang === lang)
+);
+
 });
+
+document
+.querySelector(".montara-lang-switch")
+?.classList.toggle(
+"is-en",
+lang === "en"
+);
 
 
 setGreeting();
@@ -2278,10 +2344,33 @@ setGreeting();
 
 function setGreeting(){
 
+const hour =
+new Date().getHours();
+
+if(currentLang === "de"){
+
 greeting.textContent =
-currentLang === "de"
-? "Willkommen im AlpenParks Taxacher 👋"
-: "Welcome to AlpenParks Taxacher 👋";
+hour < 12
+? "☀️ Guten Morgen 👋"
+:
+hour < 18
+? "🏔️ Guten Tag 👋"
+:
+"🌙 Guten Abend 👋";
+
+}
+else{
+
+greeting.textContent =
+hour < 12
+? "☀️ Good morning 👋"
+:
+hour < 18
+? "🏔️ Good afternoon 👋"
+:
+"🌙 Good evening 👋";
+
+}
 
 }
 
